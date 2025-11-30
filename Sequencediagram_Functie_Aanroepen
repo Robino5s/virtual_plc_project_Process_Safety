@@ -1,0 +1,14 @@
+@startuml Function_Call
+
+participant "PRG_TaskWakkerWorden" as T1
+participant "g_bTijdVanWakkerWorden()" as Func
+participant "GVL" as GVL
+
+T1 -> Func: g_bTijdVanWakkerWorden(7, 0, 7, 0)
+Func --> T1: TRUE/FALSE
+
+T1 -> GVL: update g_bTijdVanWakkerWorden, g_bLampAan
+T1 -> GVL: g_iSnoozeTeller++
+GVL --> T1: g_iSnoozeTeller geupdated
+
+@enduml

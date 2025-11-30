@@ -1,0 +1,20 @@
+@startuml Tasks_Communication
+
+actor virtual_plc_project
+
+participant "PRG_TaskWakkerWorden\n(Task 1)" as T1
+participant "GVL" as GVL
+participant "PRG_TaskKoffieZetten\n(Task 2)" as T2
+
+virtual_plc_project -> T1: Cyclus
+T1 -> GVL: g_bTijdVanWakkerWorden := TRUE\n g_bLightOn := TRUE
+T1 -> GVL: g_iSnoozeTeller++
+
+GVL -> T1: geupdate waarden
+T1 -> GVL: g_bWakker := TRUE (na snooze>2)
+
+T2 <- GVL: Zie g_bWakker
+T2 -> T2: Start KoffieZetten
+T2 -> GVL: g_bKoffieKlaar := TRUE
+
+@enduml

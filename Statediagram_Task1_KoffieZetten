@@ -1,0 +1,8 @@
+@startuml KoffieZetten_StateDiagram
+[*] --> wachten
+
+wachten --> KoffieZetten : g_bWakker == TRUE
+KoffieZetten --> g_bKoffieKlaar : KoffieZetten.Q == TRUE
+g_bKoffieKlaar --> [*]
+
+@enduml

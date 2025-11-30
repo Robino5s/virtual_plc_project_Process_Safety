@@ -1,0 +1,14 @@
+@startuml WakkerWorden_StateDiagram
+[*] --> Wacht
+
+Wacht --> CheckTijd : Check of gebruiker wakker moet worden
+CheckTijd --> LampAan : bTijdVanWakkerWorden == TRUE
+CheckTijd --> Wacht : bTijdVanWakkerWorden == FALSE
+
+LampAan --> Snoozen : g_iSnoozeTeller+1
+Snoozen --> Wakker : g_iSnoozeTeller > 2
+Snoozen --> Wacht : g_iSnoozeTeller <= 2
+
+Wakker --> [*]
+
+@enduml
