@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="TaskWakkerWorden" Id="{31d5cffb-64e9-4ba8-8bf8-7734d827ce8e}" SpecialFunc="None">
+    <Declaration><![CDATA[VAR
+    	
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// Kijken of het tijd is om wakker te worden door de functie aan te roepen
+GVL.g_WakkerWorden := TijdVanWakkerWorden(
+                    ActueleUur := 7, 
+                    ActueleMinuut := 0,
+                    WekUur := 7,
+                    WekMinuut := 0);
+
+// Als het tijd is om wakker te worden GVL updaten
+IF GVL.g_WakkerWorden THEN
+    GVL.g_bWekTijd := TRUE;
+    GVL.g_bLampAan := TRUE;
+
+    // Wakker worden simuleren
+    GVL.g_iSnoozeCounter := GVL.g_iSnoozeCounter + 1;
+
+    IF GVL.g_iSnoozeCounter > 2 THEN
+        GVL.g_bWakker := TRUE;
+    END_IF
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="TaskWakkerWorden">
+      <LineId Id="39" Count="18" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="58" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

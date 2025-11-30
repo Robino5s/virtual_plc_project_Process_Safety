@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="Functieprogramma" Id="{19053d2d-3e91-4fef-9b84-b5856a8124db}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION TijdVanWakkerWorden : BOOL
+VAR_INPUT
+    ActueleUur   : INT;
+    ActueleMinuut : INT;
+    WekUur      : INT;
+    WekMinuut    : INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+IF (ActueleUur = WekUur) AND (ActueleMinuut = Wekminuut) THEN
+    TijdVanWakkerWorden := TRUE;
+ELSE
+    TijdVanWakkerWorden := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="Functieprogramma">
+      <LineId Id="29" Count="5" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

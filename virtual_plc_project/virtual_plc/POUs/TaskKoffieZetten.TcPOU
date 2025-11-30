@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="TaskKoffieZetten" Id="{3747bf79-b671-48c5-b96f-b14694d16c67}" SpecialFunc="None">
+    <Declaration><![CDATA[VAR
+    
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// Koffieapparaat aanzetten zodra gebruiker wakker is
+IF GVL.g_bWakker THEN
+    GVL.g_KoffieZetten(IN := TRUE, PT := T#10S);  // Koffie loopt voor 10 seconden
+ELSE
+    GVL.g_KoffieZetten(IN := FALSE);
+END_IF
+
+// Koffie is klaar zodra de timer klaar is
+IF GVL.g_KoffieZetten.Q THEN
+    GVL.g_bKoffieKlaar := TRUE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="TaskKoffieZetten">
+      <LineId Id="26" Count="10" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

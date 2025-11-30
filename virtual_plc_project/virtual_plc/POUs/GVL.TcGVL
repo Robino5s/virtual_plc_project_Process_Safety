@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <GVL Name="GVL" Id="{d9f5c9d2-ebc7-4628-8db4-95be14124fc4}">
+    <Declaration><![CDATA[
+VAR_GLOBAL
+    g_bWekTijd       : BOOL := FALSE;   // Wordt TRUE waneer het tijd is om wakker te worden
+    g_bWakker         : BOOL := FALSE;   // Wordt TRUE als Task1 ziet dat je wakker bent
+    g_bLampAan          : BOOL := FALSE;   // Wordt aangestuurd door TaskWakkerWorden
+    g_bKoffieKlaar      : BOOL := FALSE;   // Wordt gebruikt in TaskKoffieZetten
+    g_iSnoozeCounter    : INT := 0;        // Wordt aangepast en bijgehouden door TaskWakkerWorden
+	g_WakkerWorden 	: BOOL;					// Houdt bij of de gebruiker al wakker moet worden
+	g_KoffieZetten   : TON;					// Is de timer die bijhoud of de koffie klaar is
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
